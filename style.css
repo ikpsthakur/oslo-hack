@@ -1,7 +1,7 @@
 :root {
   --ink: #110f17;
   --paper: #fbf7f0;
-  --orange: #ff5a2c;
+  --orange: #1877f2;
   --line-dark: rgba(17, 15, 23, 0.2);
   --line-light: rgba(251, 247, 240, 0.22);
   --page-pad: clamp(1.25rem, 4vw, 4.75rem);
