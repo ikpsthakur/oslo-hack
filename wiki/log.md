@@ -59,3 +59,9 @@ Local build, wiki/deployment checks, all 14 API/knowledge tests, and the credent
 
 Before pushing this branch, the user clarified that the destination must be `ikpsthakur/oslo-hack`, not the previously created `iaznexai` repository. The user completed account authorization, and GitHub's user endpoint confirmed `ikpsthakur`. Preserve the prior repository without modification, correct repository links on the new baseline, and continue this feature through a pull request in the requested account. Hosted CI and pull-request results remain to be verified.
 
+## [2026-10-22] publish | Requested ikpsthakur repository and first feature branch
+
+Created and verified [ikpsthakur/oslo-hack](https://github.com/ikpsthakur/oslo-hack) as PUBLIC under the authenticated `ikpsthakur` account. Baseline commit `73ac70a` corrects repository links and preserves the existing project history. Pushed this baseline to `main`. Renamed the old GitHub remote to `github-iaznexai`, added the requested destination as `github`, and left the original hosting `origin` and earlier repository unchanged.
+
+Saved the tested meetup update as a local feature commit and rebased it onto the corrected baseline. The proposed change remains isolated on `fix/unconfirmed-meetup`; it has not been merged or deployed. The pull request will compare that branch against `main`, with GitHub CI checking the proposed merged result. This is the first review exercise described in [the DevOps guide](github-devops.md).
+
