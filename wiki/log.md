@@ -107,3 +107,9 @@ Promoted that same staged Production build and verified https://oslo-hack-mywork
 
 The new deployment's one-hour error scan returned no error logs at check time; this is point-in-time evidence, not monitoring coverage. Drains/external monitoring were not inspected or changed. Three live model requests were used for this release verification. No card entry, credit purchase, paid fallback, secret retrieval, or privacy-setting change was performed. The old Vercel Gateway credential remains unused; no account key was revoked automatically.
 
+## [2026-10-22] enhance | Floating corner chat panel
+
+The user requested a bottom-right chat icon that opens a popup instead of the inline chat section. Created `feat/floating-chat`, preserving the pending release-documentation changes. Reused the existing form/provider integration inside a native non-modal dialog with an accessible launcher, close button, Escape handling, focus return, retained in-memory conversation, and existing `#ask` deep-link support. Async replies do not focus a closed panel. Preserved black/lime styling and added dynamic-viewport/safe-area bounds, scrollable content, and footer clearance. Added UI-controller regression tests; browser verification and release are pending.
+
+Local build/wiki checks and all 21 tests passed, including four new controller tests for toggling/history, Escape/focus, deep links, and closing during an in-flight reply. Local browser checks verified the default collapsed launcher, open/focus, Escape/return focus, and desktop lower-right placement. At 375×812 CSS pixels the panel stayed within the viewport (10px side insets, bottom 726px) with document width 375px and no horizontal overflow. Native on-screen keyboard behavior was not simulated.
+

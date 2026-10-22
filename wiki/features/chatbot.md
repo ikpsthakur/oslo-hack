@@ -16,9 +16,9 @@ The [user originally requested](../../raw/2026-10-22-feature-wiki-and-chatbot.md
 - [api/chat.mjs](../../api/chat.mjs): server prompt, model, request limits, provider call, errors.
 - [visitor-guide.md](../public/visitor-guide.md): public facts sent to the model; edits affect answers after rebuild/release.
 - [Synthetic knowledge store](../public/synthetic/index.md): fictional FAQ/session/project/policy records compiled from an explicit allowlist. See [its feature](synthetic-knowledge-store.md).
-- [index.html](../../index.html): chat form, example questions, privacy notice.
-- [script.js](../../script.js): history, loading, retry, clear, text-only rendering.
-- [style.css](../../style.css): panel and phone layout.
+- [index.html](../../index.html): bottom-right chat launcher, non-modal dialog, form, example questions, privacy notice.
+- [script.js](../../script.js): popup open/close, Escape, focus, deep links, history, loading, retry, clear, text-only rendering.
+- [style.css](../../style.css): fixed corner panel and responsive phone layout.
 
 Target this specification for behavior changes, the public guide for verified new content, and the synthetic store for clearly fictional examples. Other wiki/raw files never become model context automatically.
 
@@ -38,6 +38,12 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 4. Phone and keyboard support, announced replies/status, loading state, retryable question, clearable in-memory history.
 5. Visible AI error/privacy notice: the free provider may retain messages for model improvement. No browser persistence.
 6. Input, gateway-limit, network, configuration, and account errors are handled without leaking raw upstream details.
+
+## Floating chat interface
+
+Requested by the user on 2026-10-22: replace the inline chat section with a bottom-right chat-icon launcher and popup, preserving the working model integration. On `feat/floating-chat`, the launcher is available across the page. It toggles a labelled non-modal dialog, so visitors can still use the website. The close button and Escape return focus to the launcher; opening focuses the input. Messages survive close/reopen in memory, including an answer received while closed, without stealing focus. `#ask` deep links open the popup. No change to provider credentials, knowledge, or free-only routing.
+
+The panel fits the dynamic viewport with safe-area spacing and a scrollable body; the header/close control stays accessible. It does not claim to connect to a human organiser. Pending browser checks and release evidence are recorded in [the log](../log.md).
 
 ## Validation and release
 
