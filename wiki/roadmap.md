@@ -9,7 +9,7 @@ updated: 2026-10-22
 
 The following sequence is a recommendation, not blanket approval. The wiki conversion and requested Nemotron chatbot are current work.
 
-1. Improve [session details](features/session-details.md): use confirmed details or explicitly say the next session is unconfirmed.
+1. Confirm real [session details](features/session-details.md) with the organiser. Current source explicitly marks the next meetup unconfirmed; the first feature branch replaces the old placeholder announcement and awaits review/release.
 2. Add [host/contact](features/host-contact.md), then [signup](features/signup.md) with a real destination.
 3. Add [project ideas](features/project-ideas.md) so people can see concrete ways to participate.
 4. Add [idea submissions](features/idea-submissions.md) once the organiser chooses how to receive them.

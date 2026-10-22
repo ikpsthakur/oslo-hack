@@ -25,7 +25,7 @@ The website has an illustrative plan: 10:00 meet, 10:30 form small teams, 11:00 
 
 ## What is not confirmed
 
-No next event date, venue, available places, organiser contact, ticket price, language policy, accessibility arrangements, or booking link has been confirmed. Older date and venue wording on the page is placeholder copy and must not be presented as a real announcement.
+No next event date, venue, available places, organiser contact, ticket price, language policy, accessibility arrangements, or booking link has been confirmed. The website source explicitly says "Next meetup not confirmed" and "Date, time, and venue are still to be confirmed." The expandable agenda is labelled as an example, not a confirmed event schedule.
 
 No signup, reservation, member directory, payments, or project-submission service currently exists. The assistant cannot book places, contact people, retrieve live bike availability, or change the website. It can explain the project and suggest small project ideas.
 

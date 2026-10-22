@@ -47,3 +47,15 @@ Created [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack) as a PUBLIC 
 
 The first hosted [CI run](https://github.com/iaznexai/oslo-hack/actions/runs/39802810556) completed successfully, validating the build/wiki and all 14 tests without live model credentials. Added repository onboarding links and clarified that wiki/raw documentation is now publicly readable in GitHub, while only allowlisted public knowledge reaches the chatbot. The repository uses a pull-request convention; no branch protection or automatic production deployment was enabled. Vercel and gateway billing configuration remain unchanged.
 
+## [2026-10-22] change | First feature branch: unconfirmed meetup
+
+The user requested the first branch-and-pull-request change: replace placeholder session details with a clear unconfirmed state and explain each GitHub step. Verified a clean `main`, fetched GitHub, confirmed it was up to date, and created `fix/unconfirmed-meetup`.
+
+Updated source HTML to remove the sample date, venue, and open-session claim. Added an example-only agenda notice and aligned the chat note and public visitor guide. Updated [the session specification](features/session-details.md), roadmap, and content-gap notes. Build, browser validation, and pull-request outcomes will be recorded after execution. This branch work does not deploy or modify production.
+
+## [2026-10-22] verify | Unconfirmed meetup change and account correction
+
+Local build, wiki/deployment checks, all 14 API/knowledge tests, and the credential-pattern scan passed. Browser checks verified the new unconfirmed copy, removal of the old date and venue, agenda expansion/collapse and example notice, and no horizontal overflow at effective widths of 375 and 1440 CSS pixels. A review screenshot was saved locally under outputs. No live model call or production deployment was part of this copy change.
+
+Before pushing this branch, the user clarified that the destination must be `ikpsthakur/oslo-hack`, not the previously created `iaznexai` repository. The user completed account authorization, and GitHub's user endpoint confirmed `ikpsthakur`. Preserve the prior repository without modification, correct repository links on the new baseline, and continue this feature through a pull request in the requested account. Hosted CI and pull-request results remain to be verified.
+
