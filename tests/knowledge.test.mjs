@@ -41,7 +41,7 @@ test('empty sources, duplicate record IDs and excessive context fail closed', ()
 
 test('real compiled knowledge and synthetic-answer rules reach the model request', async () => {
   let seen = false;
-  const handle = createChatHandler({ env: { AI_GATEWAY_API_KEY: 'test-only' }, knowledge: await loadKnowledge(root), fetcher: async (_, init) => {
+  const handle = createChatHandler({ env: { OPENROUTER_API_KEY: 'test-only' }, knowledge: await loadKnowledge(root), fetcher: async (_, init) => {
     const system = JSON.parse(init.body).messages[0].content;
     assert.match(system, /Every answer drawing on synthetic records must explicitly say/);
     assert.match(system, /baseline guide takes priority/i);

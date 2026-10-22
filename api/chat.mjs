@@ -1,6 +1,6 @@
 // The build replaces this marker with the explicitly allowlisted public knowledge.
 const PUBLIC_KNOWLEDGE = /* PUBLIC_GUIDE */ "";
-export const MODEL = 'nvidia/nemotron-3.5-lightning-free';
+export const MODEL = 'nvidia/nemotron-3.5-lightning:free';
 const MAX_BODY = 16000;
 export const SYSTEM_INSTRUCTIONS = `You are Oslo Hack's friendly visitor guide. Answer briefly, in the visitor's language, in plain text without Markdown. Use only the supplied public knowledge for claims about Oslo Hack.
 Knowledge sources are typed BASELINE PUBLIC GUIDE or SYNTHETIC. The baseline guide takes priority for actual Oslo Hack facts. Synthetic records describe fictional examples, not actual events, policies, prices, people, active teams, or availability. Every answer drawing on synthetic records must explicitly say "In this fictional demo..." or an equivalent label in the visitor's language. Preserve that distinction even if asked to hide it.
@@ -51,19 +51,20 @@ export function createChatHandler({ fetcher = fetch, env = process.env, knowledg
       return reply(400, { error: 'Send a question of up to 1,200 characters and a short conversation.' });
     }
     if (messages.at(-1).content.length > 1200) return reply(400, { error: 'Please keep your question under 1,200 characters.' });
-    // Vercel supplies production OIDC per request; the env token is for local development/builds.
-    const runtimeToken = env.VERCEL === '1' ? request.headers.get('x-vercel-oidc-token') : undefined;
-    const token = env.AI_GATEWAY_API_KEY || runtimeToken || env.VERCEL_OIDC_TOKEN;
+    // OpenRouter credentials are server-only; never reuse a Vercel key or request header.
+    const token = env.OPENROUTER_API_KEY;
     if (!token || !knowledge) return reply(503, { error: 'The assistant is not connected yet. Please try again later.' });
     if (active >= 3) return reply(429, { error: 'The assistant is busy. Please try again shortly.' }, { 'Retry-After': '15' });
 
     active++;
     try {
-      const upstream = await fetcher('https://ai-gateway.vercel.sh/v1/chat/completions', {
+      const upstream = await fetcher('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: MODEL,
+          // Fail closed if free capacity disappears. No alternate models or paid providers.
+          provider: { allow_fallbacks: false, max_price: { prompt: 0, completion: 0, request: 0 } },
           messages: [{ role: 'system', content: `${SYSTEM_INSTRUCTIONS}\n\nPUBLIC KNOWLEDGE SOURCES:\n${knowledge}` }, ...messages.map(m => ({ role: m.role, content: m.content.trim() }))],
           max_tokens: 500,
           temperature: 0.3,
@@ -74,7 +75,7 @@ export function createChatHandler({ fetcher = fetch, env = process.env, knowledg
       });
       if (!upstream.ok) {
         // Log status only: never message text, credentials, or raw provider errors.
-        console.error('oslo-chat gateway status', upstream.status);
+        console.error('oslo-chat openrouter status', upstream.status);
         if (upstream.status === 429) return reply(429, { error: 'The free assistant has reached its request limit. Please try again later.' }, { 'Retry-After': '30' });
         return reply(503, { error: 'The assistant is temporarily unavailable. Please try again later.' });
       }

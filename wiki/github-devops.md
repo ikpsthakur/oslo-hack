@@ -55,7 +55,7 @@ CI means continuous integration: automatically checking that changes fit togethe
 
 For now the GitHub workflow tests code but does not publish it. Deploy only the built `dist/` folder to the existing Vercel project when a release is requested. Do not connect Vercel to the repository root with its current deployment configuration; that would change the deployment boundary. Adding automated releases should be a separate change with preview verification and an explicit root/build/output configuration.
 
-The chatbot still requires account verification before a successful live gateway call can be checked. Do not treat a CI pass as resolving that blocker. See [the chatbot specification](features/chatbot.md).
+The chatbot migration requires a new server-side OpenRouter key and a successful live provider test. CI uses mocks, not production credentials. Do not treat a CI pass as proving real replies. See [the chatbot specification](features/chatbot.md) and [no-card setup](sources/openrouter.md).
 
 ## Review rules
 

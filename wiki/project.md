@@ -13,7 +13,7 @@ Oslo Hack helps people in Oslo meet collaborators, build a small project, and sh
 
 The [original requests](../raw/2026-10-22-user-requirements.md) require HTML/CSS/JavaScript and `photo.jpg`, phone support, navigation, an introduction, Meet/Build/Share, a footer, and a collapsible session plan. Friendly placeholders were allowed. The user prefers a dark background and does not like blue. The current lime accent is observed in code.
 
-No login, payments, or database were requested. The user subsequently asked for a chatbot using Nemotron through Vercel AI Gateway; this explicitly expands the static-only runtime with a server-side API, while retaining a library-free frontend.
+No login, payments, or database were requested. The user subsequently asked for a chatbot using Nemotron; this explicitly expands the static-only runtime with a server-side API, while retaining a library-free frontend. After Vercel AI Gateway blocked the tested credentials, the user [approved OpenRouter's free Nemotron API](../raw/2026-10-22-openrouter-migration.md) on 2026-10-22, retaining Vercel hosting and requiring no card or paid fallback.
 
 ## Current conversion
 

@@ -1,11 +1,13 @@
 ---
 title: AI Gateway integration evidence
 type: source
-status: current
+status: historical
 updated: 2026-10-22
 ---
 
 # AI Gateway integration evidence
+
+Historical integration: the user approved [OpenRouter's free Nemotron API](openrouter.md) on 2026-10-22 instead. The Vercel hosting project is unchanged; the following records earlier Gateway work, not current authentication instructions.
 
 Checked on 2026-10-22. [Raw discovery record](../../raw/2026-10-22-gateway-observation.md).
 
