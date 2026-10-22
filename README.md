@@ -1,10 +1,21 @@
 # Oslo Hack
 
+[![CI](https://github.com/iaznexai/oslo-hack/actions/workflows/ci.yml/badge.svg)](https://github.com/iaznexai/oslo-hack/actions/workflows/ci.yml)
+
+Public repository: [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack).
+
 A phone-friendly, one-page website for finding people in Oslo to build small projects with. This repository also holds a local, AI-maintained project wiki, so requirements and decisions can outlast a chat session.
 
 ## Start here
 
-Open this folder in Codex: `/Users/kthakur/Documents/New project 2`.
+Clone the repository and open its folder in Codex or your editor:
+
+```sh
+git clone https://github.com/iaznexai/oslo-hack.git
+cd oslo-hack
+```
+
+The original Mac checkout remains at `/Users/kthakur/Documents/New project 2`.
 
 Read the [wiki index](wiki/index.md) for project context and the [roadmap](wiki/roadmap.md) for suggested next steps. [AGENTS.md](AGENTS.md) defines how an AI should maintain the project memory. The wiki can also be read in any text editor or by opening this folder as an Obsidian vault; no Obsidian plugins are required.
 
@@ -42,7 +53,7 @@ oslo-bike-finder/     Separate existing project, outside this wiki's scope
 Requires Node.js 22+ for tooling, tests, and the local preview (Vercel uses Node.js 24). There are no npm dependencies to install.
 
 ```sh
-cd "/Users/kthakur/Documents/New project 2"
+# Run from the repository folder.
 npm run build
 npm run check
 npm test
@@ -73,6 +84,6 @@ Put original notes or source documents in `raw/`. Once registered in [the source
 
 The existing production address is <https://oslo-hack-livid.vercel.app>. Its availability was not rechecked as part of this local conversion.
 
-Build and check from the root before publishing. Deploy only `dist/` to the already linked `oslo-hack` Vercel project. Confirm the linked owner/project before deployment. Keep the wiki, raw sources, reports, and credentials local. This conversion does not deploy anything or change the live website.
+Build and check from the root before publishing. Deploy only `dist/` to the already linked `oslo-hack` Vercel project. Confirm the linked owner/project before deployment. The wiki and selected raw evidence are public repository documentation; they are not served as website routes or automatically included in AI context. Credentials and local reports stay excluded from GitHub. The GitHub CI workflow does not deploy or change the live website.
 
 See [development and release](wiki/development.md) for the full workflow and [open questions](wiki/open-questions.md) before turning placeholder content into public claims.

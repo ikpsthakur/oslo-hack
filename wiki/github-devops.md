@@ -9,9 +9,9 @@ updated: 2026-10-22
 
 ## Purpose
 
-The user asked to publish the Oslo Hack codebase in a public GitHub repository and use it to learn DevOps. This includes the website, project wiki, synthetic knowledge, build tools, and tests. The separate local bike project remains outside this repository. Public source access does not mean exposing credential files or deploying the private development wiki as website routes.
+The user asked to publish the Oslo Hack codebase in a public GitHub repository and use it to learn DevOps. This includes the website, project wiki, synthetic knowledge, build tools, and tests. The separate local bike project remains outside this repository. Public source access does not mean exposing credential files or deploying the development wiki as website routes.
 
-Planned repository: `iaznexai/oslo-hack`, using the authenticated GitHub account discovered during setup. Actual creation, CI, and protection results are recorded in [the log](log.md).
+Public repository: [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack), created and verified public on 2026-10-22. See [Actions](https://github.com/iaznexai/oslo-hack/actions) for hosted checks and [the log](log.md) for setup results. Branch protection has not been configured as part of the bootstrap; use the pull-request convention described here.
 
 ## The small-change cycle
 

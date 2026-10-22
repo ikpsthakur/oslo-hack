@@ -41,3 +41,9 @@ The user requested public GitHub hosting for this codebase and a DevOps learning
 
 The existing history passed a scan for common credential patterns. Local build/wiki checks and all 14 API/knowledge tests passed. GitHub CI is designed to use no live model credentials and performs no production deployment. Repository creation, push, and hosted CI results will be recorded after they are verified.
 
+## [2026-10-22] publish | Public GitHub repository verified
+
+Created [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack) as a PUBLIC repository, with `main` as the default branch. Pushed bootstrap commit `4b4eae436c8842e36e14c901046938e0b20f7467` and preserved the six earlier website commits. The local `github` remote points to the new repository; original `origin` was preserved. Verified that only the intended 73 tracked project files were selected, and common credential-pattern scans passed for those files and earlier history. Credentials, local Vercel state, local screenshots, and the separate bike project were excluded.
+
+The first hosted [CI run](https://github.com/iaznexai/oslo-hack/actions/runs/39802810556) completed successfully, validating the build/wiki and all 14 tests without live model credentials. Added repository onboarding links and clarified that wiki/raw documentation is now publicly readable in GitHub, while only allowlisted public knowledge reaches the chatbot. The repository uses a pull-request convention; no branch protection or automatic production deployment was enabled. Vercel and gateway billing configuration remain unchanged.
+
