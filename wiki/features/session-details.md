@@ -11,7 +11,7 @@ updated: 2026-10-22
 
 The website source now displays "Next meetup not confirmed", "Details pending", and "Date, time, and venue are still to be confirmed." The old sample date and Grünerløkka venue wording have been removed. The expandable agenda remains usable, with an explicit example-only notice. The chatbot knowledge describes the same unconfirmed state.
 
-Requested by the user on 2026-10-22 as the first branch-and-pull-request exercise. This describes the change on `fix/unconfirmed-meetup`, not a production deployment.
+Requested by the user on 2026-10-22 as the first branch-and-pull-request exercise. PR #1 was reviewed, merged, and deployed on 2026-10-22. The public page at https://oslo-hack-mywork.vercel.app shows the unconfirmed state.
 
 ## Code and dependencies
 
