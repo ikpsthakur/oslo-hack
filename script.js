@@ -19,6 +19,9 @@ if (year) {
 
 const chatForm = document.querySelector('#chat-form');
 if (chatForm) {
+  const panel = document.querySelector('#ask');
+  const launcher = document.querySelector('#chat-launcher');
+  const close = document.querySelector('#chat-close');
   const input = document.querySelector('#chat-input');
   const send = document.querySelector('#chat-send');
   const status = document.querySelector('#chat-status');
@@ -27,6 +30,31 @@ if (chatForm) {
   const suggestions = [...document.querySelectorAll('[data-question]')];
   let messages = [];
   let busy = false;
+
+  function openChat() {
+    if (!panel.open) panel.show();
+    launcher.setAttribute('aria-expanded', 'true');
+    launcher.setAttribute('aria-label', 'Close Oslo Hack chat');
+    input.focus({ preventScroll: true });
+    log.scrollTop = log.scrollHeight;
+  }
+  function closeChat() {
+    panel.close();
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.setAttribute('aria-label', 'Open Oslo Hack chat');
+    launcher.focus({ preventScroll: true });
+  }
+  launcher.hidden = false;
+  launcher.addEventListener('click', () => panel.open ? closeChat() : openChat());
+  close.addEventListener('click', closeChat);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && panel.open) { event.preventDefault(); closeChat(); }
+  });
+  function openFromLink() {
+    if (window.location.hash === '#ask') openChat();
+  }
+  window.addEventListener('hashchange', openFromLink);
+  openFromLink();
 
   function addMessage(role, text) {
     const element = document.createElement('p');
@@ -72,7 +100,8 @@ if (chatForm) {
       status.textContent = error.name === 'TimeoutError' ? 'That took too long. Your question is ready to try again.' : (error instanceof TypeError ? 'Could not connect. Check your connection and try again.' : error.message);
     } finally {
       setBusy(false);
-      input.focus({ preventScroll: true });
+      // A response may arrive after the visitor closes the panel. Do not steal focus.
+      if (panel.open) input.focus({ preventScroll: true });
     }
   });
   suggestions.forEach(button => button.addEventListener('click', () => {

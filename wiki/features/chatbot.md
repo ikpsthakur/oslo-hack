@@ -1,7 +1,7 @@
 ---
 title: Oslo Hack visitor chatbot
 type: feature
-status: accepted
+status: implemented
 updated: 2026-10-22
 ---
 
@@ -16,9 +16,9 @@ The [user originally requested](../../raw/2026-10-22-feature-wiki-and-chatbot.md
 - [api/chat.mjs](../../api/chat.mjs): server prompt, model, request limits, provider call, errors.
 - [visitor-guide.md](../public/visitor-guide.md): public facts sent to the model; edits affect answers after rebuild/release.
 - [Synthetic knowledge store](../public/synthetic/index.md): fictional FAQ/session/project/policy records compiled from an explicit allowlist. See [its feature](synthetic-knowledge-store.md).
-- [index.html](../../index.html): chat form, example questions, privacy notice.
-- [script.js](../../script.js): history, loading, retry, clear, text-only rendering.
-- [style.css](../../style.css): panel and phone layout.
+- [index.html](../../index.html): bottom-right chat launcher, non-modal dialog, form, example questions, privacy notice.
+- [script.js](../../script.js): popup open/close, Escape, focus, deep links, history, loading, retry, clear, text-only rendering.
+- [style.css](../../style.css): fixed corner panel and responsive phone layout.
 
 Target this specification for behavior changes, the public guide for verified new content, and the synthetic store for clearly fictional examples. Other wiki/raw files never become model context automatically.
 
@@ -39,8 +39,14 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 5. Visible AI error/privacy notice: the free provider may retain messages for model improvement. No browser persistence.
 6. Input, gateway-limit, network, configuration, and account errors are handled without leaking raw upstream details.
 
+## Floating chat interface
+
+Requested by the user on 2026-10-22: replace the inline chat section with a bottom-right chat-icon launcher and popup, preserving the working model integration. On `feat/floating-chat`, the launcher is available across the page. It toggles a labelled non-modal dialog, so visitors can still use the website. The close button and Escape return focus to the launcher; opening focuses the input. Messages survive close/reopen in memory, including an answer received while closed, without stealing focus. `#ask` deep links open the popup. No change to provider credentials, knowledge, or free-only routing.
+
+The panel fits the dynamic viewport with safe-area spacing and a scrollable body; the header/close control stays accessible. It does not claim to connect to a human organiser. The popup was deployed and real browser replies verified on 2026-10-22; [PR #6](https://github.com/ikpsthakur/oslo-hack/pull/6) remains open while hosted CI is queued. All 21 tests passed locally. Exact release evidence is recorded in [the log](../log.md).
+
 ## Validation and release
 
-The previous Vercel Gateway runtime is deployed at https://oslo-hack-mywork.vercel.app and remains blocked by upstream HTTP 403. Historical OIDC/key testing is recorded in [the log](../log.md).
+PR #4 was reviewed with green CI and merged as `c01bd6b3ba10858a685008c7af29b3b78865c605`. Built and checked that exact commit; all 17 API/knowledge tests passed. The owner configured a hidden Production OpenRouter secret; its value was never read. Historical Gateway OIDC/key failures are recorded in [the log](../log.md), not current availability.
 
-The OpenRouter migration is in source on `feat/openrouter-free-chat`. Production release and real generation remain pending the new Production secret and staged test. Do not claim a working live chatbot based on mock tests. The status remains accepted until the real-generation criterion passes. See [open questions](../open-questions.md).
+On 2026-10-22, staged Production deployment `dpl_ENbjeDMnQEAqZvDHiVXm6boGzdhg` returned HTTP 200 with real model answers for an unconfirmed-meetup question and a fictional project example. The latter explicitly said "In this fictional demo". Promoted that exact build to https://oslo-hack-mywork.vercel.app, then submitted a public browser question and observed the rendered real answer, restored controls, and no browser console warnings/errors. A 375-pixel phone check showed no horizontal overflow and readable chat controls/reply/privacy notice. The new deployment's one-hour error scan found no error logs at check time. External drains/monitoring were not inspected. These are point-in-time tests, not a guarantee of future free capacity. See [open questions](../open-questions.md).

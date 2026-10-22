@@ -18,7 +18,7 @@ The [baseline observation](../raw/2026-10-22-code-observation.md) records an old
 
 ## Implementation and operation
 
-- The user approved [OpenRouter free Nemotron](sources/openrouter.md) on 2026-10-22 instead of resolving the previous Vercel Gateway 403. The owner must add `OPENROUTER_API_KEY` as a hidden Production secret, then the new runtime needs staged deployment and live generation/browser tests. No card, credit purchase, or paid fallback is authorized. Do not claim working AI until the real test succeeds.
+- [OpenRouter free Nemotron](sources/openrouter.md) was deployed and real API/browser replies verified on 2026-10-22; see [release evidence](log.md). Keep monitoring free capacity and the shared account quota. No card, credit purchase, paid fallback, or automatic privacy-setting change is authorized. External drains/monitoring coverage remains unverified.
 - The free model's provider may retain messages. Public notices must remain visible; internal notes and personal data must not be sent.
 - If traffic grows, add platform-level rate limiting. The initial per-instance guard is not global abuse protection.
 - A proposed feature MD file is a plan until it is implemented and tested. Accepted behavior needs code and release evidence.
