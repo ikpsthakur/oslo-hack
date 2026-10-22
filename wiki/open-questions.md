@@ -18,7 +18,7 @@ The [baseline observation](../raw/2026-10-22-code-observation.md) records an old
 
 ## Implementation and operation
 
-- Gateway account eligibility is blocked as of 2026-10-22: a real team-token request returned `403 customer_verification_required` and requested a credit card on file. The user added a hidden Production key; the newly deployed handler now reaches the Gateway but still receives HTTP 403. Confirm whether account verification was completed for the key's team, and inspect Gateway permissions if it was. No payment details or paid purchases were added by the agent. Re-test generation after the external state changes before claiming AI availability.
+- The user approved [OpenRouter free Nemotron](sources/openrouter.md) on 2026-10-22 instead of resolving the previous Vercel Gateway 403. The owner must add `OPENROUTER_API_KEY` as a hidden Production secret, then the new runtime needs staged deployment and live generation/browser tests. No card, credit purchase, or paid fallback is authorized. Do not claim working AI until the real test succeeds.
 - The free model's provider may retain messages. Public notices must remain visible; internal notes and personal data must not be sent.
 - If traffic grows, add platform-level rate limiting. The initial per-instance guard is not global abuse protection.
 - A proposed feature MD file is a plan until it is implemented and tested. Accepted behavior needs code and release evidence.

@@ -50,6 +50,7 @@ Start with [project scope](project.md), then choose a feature file. These files 
 - [Source and deployment decision](decisions/002-source-and-build.md): root is canonical.
 - [Evidence summary](sources/project-baseline.md): origins of requirements and observations.
 - [Gateway evidence](sources/ai-gateway.md): model discovery and integration references.
+- [OpenRouter setup](sources/openrouter.md): approved free-only migration, no-card key instructions, privacy, and limits.
 - [Log](log.md): chronological record of substantive work.
 
 ## Add or change a feature

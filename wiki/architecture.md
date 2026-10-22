@@ -23,7 +23,7 @@ updated: 2026-10-22
 
 ## Data flow
 
-Visitor chat → same-origin `/api/chat` → Vercel AI Gateway → exact free Nemotron model → plain-text answer. Only a short bounded conversation and the allowlisted public knowledge bundle reach the model. The bundle contains the baseline visitor guide and explicitly labelled synthetic records; the guide takes precedence for real-world questions. The model has no tools, filesystem, signup action, or wiki-editing access. The browser never receives the OIDC token or gateway key.
+Visitor chat → same-origin `/api/chat` on Vercel → OpenRouter → exact free Nemotron model → plain-text answer. Only a short bounded conversation and the allowlisted public knowledge bundle reach the model. The bundle contains the baseline visitor guide and explicitly labelled synthetic records; the guide takes precedence for real-world questions. The model has no tools, filesystem, signup action, or wiki-editing access. The browser never receives the OpenRouter key. Vercel Gateway credentials are not used or forwarded. See [OpenRouter setup](sources/openrouter.md).
 
 `raw/` and wiki files absent from the knowledge allowlist are development knowledge, never model context or deployment assets. Synthetic record context is embedded as text in the API; the Markdown directories themselves are not copied or served. `dist/` is populated from an explicit list of runtime files. Its existing `.vercel/` linkage is preserved. See [source/build decision](decisions/002-source-and-build.md).
 

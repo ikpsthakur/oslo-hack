@@ -89,3 +89,11 @@ The user configured a hidden Production `AI_GATEWAY_API_KEY`. A new deployment i
 
 Earlier, the direct team-OIDC test explicitly returned `customer_verification_required`; the later secret-key test's subtype is not known. Asked the owner whether account verification was completed for the relevant team. A successful live response remains outstanding and must be verified after that external state changes. No drains or external monitoring configuration was inspected or modified. All exposed-key rotation advice and Production-secret instructions remain applicable.
 
+## [2026-10-22] migrate | Approved no-card OpenRouter integration
+
+The user explicitly approved switching to OpenRouter free Nemotron while retaining Vercel hosting. Registered [the new authorization/discovery source](../raw/2026-10-22-openrouter-migration.md) without changing previous raw evidence. Updated [setup](sources/openrouter.md), feature/architecture/development documentation, and AGENTS.md's credential/model convention to match the new authorization. The old Gateway key/OIDC paths are no longer used.
+
+Merged the reviewed, green release-documentation PR #3 and created `feat/openrouter-free-chat`. Changed direct REST to OpenRouter, pinned the live-catalog free model, disabled fallbacks, set zero prompt/completion/request price ceilings, updated the public privacy notice, and added regression coverage proving Vercel/client credentials cannot be forwarded. The free account allowance is shared across visitors, not per person. Production release and real generation remain pending the owner's new Production secret and staged verification; no successful live OpenRouter answer is claimed yet.
+
+Local build and structural checks passed for 34 wiki pages and seven registered sources. All 17 API/knowledge tests passed, including request wiring, zero-price/fallback guards, credential isolation, knowledge boundaries, and sanitized errors. The credential-pattern scan passed. A local browser check showed the updated OpenRouter/NVIDIA notice, unchanged chat form, and unconfirmed meetup. No real generation was attempted without the new key; the last read-only Production environment check showed only the old Gateway secret.
+

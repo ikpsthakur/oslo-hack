@@ -2,10 +2,10 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const dist = new URL('../dist/', import.meta.url);
-// Load only the two credential names we support; never print their values.
+// Load only the supported server credential; never print its value.
 try {
   const env = await readFile(new URL('.env.local', dist), 'utf8');
-  for (const name of ['AI_GATEWAY_API_KEY', 'VERCEL_OIDC_TOKEN']) {
+  for (const name of ['OPENROUTER_API_KEY']) {
     const match = env.match(new RegExp(`^${name}=(.*)$`, 'm'));
     if (match && !process.env[name]) process.env[name] = match[1].trim().replace(/^"|"$/g, '').replace(/\\n/g, '\n');
   }

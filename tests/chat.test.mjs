@@ -5,15 +5,18 @@ const question = { messages: [{ role: 'user', content: 'What is Oslo Hack?' }] }
 const request = (body = question, headers = {}) => new Request('https://oslo.test/api/chat', {
   method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://oslo.test', ...headers }, body: JSON.stringify(body),
 });
-const handler = options => createChatHandler({ env: { AI_GATEWAY_API_KEY: 'test-only' }, knowledge: 'Public project facts.', ...options });
+const handler = options => createChatHandler({ env: { OPENROUTER_API_KEY: 'test-only' }, knowledge: 'Public project facts.', ...options });
 
 test('fixed free model, server credentials, bounded output, public guide and clean response', async () => {
   const response = await handler({ fetcher: async (url, init) => {
-    assert.equal(url, 'https://ai-gateway.vercel.sh/v1/chat/completions');
+    assert.equal(url, 'https://openrouter.ai/api/v1/chat/completions');
     assert.equal(init.headers.Authorization, 'Bearer test-only');
     const p = JSON.parse(init.body);
     assert.equal(p.model, MODEL);
-    assert.equal(MODEL, 'nvidia/nemotron-3.5-lightning-free');
+    assert.equal(MODEL, 'nvidia/nemotron-3.5-lightning:free');
+    assert.deepEqual(p.provider, { allow_fallbacks: false, max_price: { prompt: 0, completion: 0, request: 0 } });
+    assert.equal(p.models, undefined);
+    assert.equal(p.plugins, undefined);
     assert.equal(p.max_tokens, 500);
     assert.match(p.messages[0].content, /Public project facts/);
     assert.equal(p.messages.length, 2);
@@ -44,26 +47,15 @@ test('missing credentials or knowledge never returns fake success', async () => 
   assert.equal((await handler({ env: {} })(request())).status, 503);
   assert.equal((await handler({ knowledge: '' })(request())).status, 503);
 });
-test('Vercel runtime uses the current request OIDC token instead of a stale local token', async () => {
-  const seen = [];
-  const handle = handler({ env: { VERCEL: '1', VERCEL_OIDC_TOKEN: 'local-test-token' }, fetcher: async (_, init) => {
-    seen.push(init.headers.Authorization);
-    return Response.json({ choices: [{ message: { content: 'Hello.' } }] });
-  } });
-  for (const token of ['runtime-test-one', 'runtime-test-two']) {
-    assert.equal((await handle(request(question, { 'x-vercel-oidc-token': token }))).status, 200);
-  }
-  assert.deepEqual(seen, ['Bearer runtime-test-one', 'Bearer runtime-test-two']);
-});
-test('explicit gateway API key takes priority over runtime OIDC', async () => {
-  const response = await handler({ env: { VERCEL: '1', AI_GATEWAY_API_KEY: 'configured-test-key' }, fetcher: async (_, init) => {
-    assert.equal(init.headers.Authorization, 'Bearer configured-test-key');
+test('only OpenRouter server credentials are sent even when Vercel credentials exist', async () => {
+  const response = await handler({ env: { VERCEL: '1', OPENROUTER_API_KEY: 'router-test', AI_GATEWAY_API_KEY: 'old-test', VERCEL_OIDC_TOKEN: 'local-test' }, fetcher: async (_, init) => {
+    assert.equal(init.headers.Authorization, 'Bearer router-test');
     return Response.json({ choices: [{ message: { content: 'Hello.' } }] });
   } })(request(question, { 'x-vercel-oidc-token': 'runtime-test' }));
   assert.equal(response.status, 200);
 });
-test('untrusted local requests cannot supply gateway credentials through headers', async () => {
-  const response = await handler({ env: {} })(request(question, { 'x-vercel-oidc-token': 'client-supplied-test' }));
+test('Vercel credentials and client headers cannot substitute for an OpenRouter key', async () => {
+  const response = await handler({ env: { VERCEL: '1', AI_GATEWAY_API_KEY: 'old-test', VERCEL_OIDC_TOKEN: 'local-test' }, fetcher: () => { throw new Error('Must not send Vercel credentials to OpenRouter'); } })(request(question, { 'x-vercel-oidc-token': 'client-supplied-test', Authorization: 'Bearer client-test' }));
   assert.equal(response.status, 503);
 });
 test('provider errors sanitized with no paid fallback or automatic retry', async () => {
@@ -78,6 +70,11 @@ test('provider errors sanitized with no paid fallback or automatic retry', async
 test('empty response and network failure produce errors', async () => {
   assert.equal((await handler({ fetcher: async () => Response.json({ choices: [] }) })(request())).status, 502);
   assert.equal((await handler({ fetcher: async () => { throw new Error('network'); } })(request())).status, 503);
+});
+test('provider errors inside an HTTP 200 response never become a successful answer', async () => {
+  const response = await handler({ fetcher: async () => Response.json({ error: { message: 'private provider error', code: 403 } }) })(request());
+  assert.equal(response.status, 502);
+  assert.doesNotMatch(await response.text(), /private provider error/);
 });
 test('concurrency guard releases after completion', async () => {
   let release;

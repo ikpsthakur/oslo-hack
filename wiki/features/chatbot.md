@@ -9,7 +9,7 @@ updated: 2026-10-22
 
 ## Purpose and authority
 
-The [user requested](../../raw/2026-10-22-feature-wiki-and-chatbot.md) a chatbot using free Nemotron through Vercel AI Gateway. Answer questions about the concept, sessions, preparation, beginner participation, and small project ideas. Explain when facts are not confirmed.
+The [user originally requested](../../raw/2026-10-22-feature-wiki-and-chatbot.md) free Nemotron through Vercel AI Gateway, then [approved OpenRouter](../../raw/2026-10-22-openrouter-migration.md) to avoid card verification while keeping Vercel hosting. Answer questions about the concept, sessions, preparation, beginner participation, and small project ideas. Explain when facts are not confirmed.
 
 ## Targets
 
@@ -24,7 +24,9 @@ Target this specification for behavior changes, the public guide for verified ne
 
 ## Integration
 
-Exact model: `nvidia/nemotron-3.5-lightning-free`, discovered 2026-10-22 with zero input/output token prices. No paid fallback, credit purchase, client credentials, libraries, database, or accounts. Direct REST uses a configured server-side `AI_GATEWAY_API_KEY` first, then the per-request Vercel OIDC header on Vercel, then the local/build environment token. Production OIDC tokens are read on each request rather than cached at module load. [Gateway evidence](../sources/ai-gateway.md).
+Exact OpenRouter model: `nvidia/nemotron-3.5-lightning:free`, confirmed in the live catalog on 2026-10-22 with zero input/output prices. Direct REST uses only the server-side `OPENROUTER_API_KEY`. Vercel keys, OIDC, and client authorization headers are never substituted or forwarded. Provider fallbacks are disabled, prompt/completion/request price ceilings are zero, and no alternate models/plugins or automatic retries are sent. No credits, card, libraries, visitor accounts, or database are added. The owner needs a free OpenRouter account/key. [Setup and evidence](../sources/openrouter.md).
+
+OpenRouter's free account currently permits 50 requests/day and 20/minute shared across users; failed attempts count. Free model capacity is not guaranteed. Hosting/function limits are separate. The public privacy notice names OpenRouter and NVIDIA and warns against personal/sensitive information.
 
 Limits: 16 KB request, nine alternating messages, 1,200-character new question, 500 output tokens, 25-second upstream timeout, three simultaneous requests per function instance. This guard is not a distributed rate limiter. Same-origin checks block ordinary cross-site browser calls, not arbitrary direct clients.
 
@@ -39,6 +41,6 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 
 ## Validation and release
 
-Code is deployed in production on 2026-10-22 at https://oslo-hack-mywork.vercel.app. PR #2 corrected production OIDC access and added regression coverage; all 17 API/knowledge tests passed locally and in GitHub CI. A hidden Production API key is present. Browser checks confirmed the public page, agenda toggle, client request, and retryable unavailable state.
+The previous Vercel Gateway runtime is deployed at https://oslo-hack-mywork.vercel.app and remains blocked by upstream HTTP 403. Historical OIDC/key testing is recorded in [the log](../log.md).
 
-Live generation remains unverified: the deployed function reaches the Gateway, which returns HTTP 403; the earlier direct team-token request specifically returned `customer_verification_required`. Account access/verification still needs owner resolution. No successful answer is claimed. The status remains accepted until the real-generation criterion passes. See [the log](../log.md) and [open questions](../open-questions.md).
+The OpenRouter migration is in source on `feat/openrouter-free-chat`. Production release and real generation remain pending the new Production secret and staged test. Do not claim a working live chatbot based on mock tests. The status remains accepted until the real-generation criterion passes. See [open questions](../open-questions.md).
