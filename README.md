@@ -25,7 +25,7 @@ The separately requested visitor chatbot uses Vercel AI Gateway and `nvidia/nemo
 
 The synthetic store has 17 fictional records covering FAQs, sample sessions, project ideas, and participation scenarios. Edit those Markdown files to enhance demo answers, then rebuild and restart the local preview. The assistant is instructed to label fictional answers; sample dates, venues, capacity, costs, and policies never establish real arrangements. Actual verified facts belong in the baseline visitor guide. See [the store feature](wiki/features/synthetic-knowledge-store.md) and [evaluation prompts](wiki/public/synthetic/evaluation.md).
 
-Live activation is currently blocked: on 2026-10-22 Vercel returned `403 customer_verification_required` and required a valid credit card on the account, even for this zero-priced model. No card, paid fallback, credit purchase, or billing change was made. The local UI handles this as unavailable; a successful real generation has not been verified.
+The chatbot code is deployed at the production address below. A hidden Production gateway key is configured, and the production OIDC request-header path is supported. Live replies remain blocked as of 2026-10-22: a direct team-credential request returned `403 customer_verification_required`, and the Production-key request still returned HTTP 403. No successful real generation has been verified. The user must resolve Gateway account access/verification; adding a key alone did not resolve it. No paid fallback, card entry, or credit purchase was performed by the agent.
 
 ## Layout
 
@@ -82,7 +82,7 @@ Put original notes or source documents in `raw/`. Once registered in [the source
 
 ## Publishing
 
-The production address is <https://oslo-hack-mywork.vercel.app>. PR #1 was reviewed and merged, and its unconfirmed-meetup copy was deployed on 2026-10-22. The previous primary address is being retired at the user's request; release outcomes are recorded in the wiki log.
+The production address is <https://oslo-hack-mywork.vercel.app>. PR #1 was reviewed and merged, and its unconfirmed-meetup copy was deployed on 2026-10-22. PR #2 fixed production chatbot authentication. The previous primary domain was removed and verified to return HTTP 404; release outcomes are recorded in the wiki log. Git history and project source remain intact.
 
 Build and check from the root before publishing. Deploy only `dist/` to the already linked `oslo-hack` Vercel project. Confirm the linked owner/project before deployment. The wiki and selected raw evidence are public repository documentation; they are not served as website routes or automatically included in AI context. Credentials and local reports stay excluded from GitHub. The GitHub CI workflow does not deploy or change the live website.
 

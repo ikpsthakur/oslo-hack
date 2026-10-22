@@ -39,4 +39,6 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 
 ## Validation and release
 
-Code is implemented locally. Build, integrity/link checks, and eight API tests passed on 2026-10-22. Browser checks verified the error/retry state, clear, and responsive panel. Live generation is blocked by Vercel's `403 customer_verification_required`, requiring a valid credit card on this account. No successful live response or deployment is claimed. The status remains accepted until that criterion is verified. See [the log](../log.md) and [open questions](../open-questions.md).
+Code is deployed in production on 2026-10-22 at https://oslo-hack-mywork.vercel.app. PR #2 corrected production OIDC access and added regression coverage; all 17 API/knowledge tests passed locally and in GitHub CI. A hidden Production API key is present. Browser checks confirmed the public page, agenda toggle, client request, and retryable unavailable state.
+
+Live generation remains unverified: the deployed function reaches the Gateway, which returns HTTP 403; the earlier direct team-token request specifically returned `customer_verification_required`. Account access/verification still needs owner resolution. No successful answer is claimed. The status remains accepted until the real-generation criterion passes. See [the log](../log.md) and [open questions](../open-questions.md).

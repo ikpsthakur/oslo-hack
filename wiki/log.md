@@ -79,3 +79,13 @@ The user pasted a gateway credential. It was not repeated, written to files, exe
 
 Updated active release documentation to use the selected address. As an explicit exception to source immutability, redacted the retired address from the dated raw observation at the user's request and updated only that source's manifest hash. Earlier Git history remains intact; project source, current hosting linkage, and rollback deployments are preserved because the old alias is not a separate codebase.
 
+## [2026-10-22] verify | Production release and external chatbot blocker
+
+[PR #2](https://github.com/ikpsthakur/oslo-hack/pull/2) passed CI with all 17 tests and was reviewed and merged as `7e8d57c30fb87a3c8a88ad12df0bca8248f357f7`. Built and deployed that exact runtime to `dpl_4yhstVYNtHTBrkAn9Fk5PYFS3rbo`, then promoted it to production. Vercel reported READY, Node.js Functions plus static files, and a six-second build. Main's hosted CI passed.
+
+The selected public address https://oslo-hack-mywork.vercel.app returned HTTP 200 and showed the unconfirmed meetup. Removed the retired domain from this exact project after verifying the replacement; its URL returned HTTP 404. Verified that only the new primary project domain remains and that no retired-hostname literal remains in current tracked project content. These changes did not delete source files or rewrite earlier Git history.
+
+The user configured a hidden Production `AI_GATEWAY_API_KEY`. A new deployment included it. The public browser's chat request reached the deployed API, which reached Gateway and returned a sanitized HTTP 503 after Gateway rejected it with HTTP 403. The one-hour runtime error scan showed two Gateway-403 entries (staged and public tests). The public UI preserved the question for retry; no fake answer was substituted. Attempting a private CLI environment diagnostic could not export the sensitive key, so its value was never retrieved or printed.
+
+Earlier, the direct team-OIDC test explicitly returned `customer_verification_required`; the later secret-key test's subtype is not known. Asked the owner whether account verification was completed for the relevant team. A successful live response remains outstanding and must be verified after that external state changes. No drains or external monitoring configuration was inspected or modified. All exposed-key rotation advice and Production-secret instructions remain applicable.
+

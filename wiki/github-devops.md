@@ -59,4 +59,6 @@ The chatbot still requires account verification before a successful live gateway
 
 ## Review rules
 
+The first worked example is [PR #1](https://github.com/ikpsthakur/oslo-hack/pull/1): review the diff and green checks, merge into main, rebuild the exact merged commit, and deploy the allowlisted runtime folder. A production-only authentication bug was corrected through [PR #2](https://github.com/ikpsthakur/oslo-hack/pull/2), with three additional tests and CI before merge/release. The public site is https://oslo-hack-mywork.vercel.app. Live Gateway verification remains a separate operational check; green CI did not mean the external model account was ready.
+
 Prefer pull requests and passing checks for `main`. If repository protection is configured, the log records the exact settings; this guide alone does not prove they are enabled. For a solo learning project, a second reviewer need not be mandatory. CI runs before merging; production release remains deliberate.
