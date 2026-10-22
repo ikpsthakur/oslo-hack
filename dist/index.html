@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#110F17">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161616'/%3E%3Cpath d='M15 32h34M32 15v34' stroke='%23C8F43D' stroke-width='9' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23FFFDF8'/%3E%3C/svg%3E">
     <title>Oslo Hack — Make something small together</title>
-    <link rel="stylesheet" href="style.css?v=floating-chat-1">
-    <script src="script.js?v=floating-chat-1" defer></script>
+    <link rel="stylesheet" href="style.css?v=dynamic-chat-1">
+    <script src="script.js?v=dynamic-chat-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -125,11 +125,12 @@
             <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
               <p class="chat-message assistant">Hi! What would you like to know about Oslo Hack?</p>
             </div>
-            <div class="chat-suggestions" aria-label="Example questions">
+            <div id="chat-suggestions" class="chat-suggestions" aria-label="Example questions">
               <button type="button" data-question="Can I join as a beginner?">New here?</button>
               <button type="button" data-question="Suggest a small project to build in an afternoon.">Need an idea?</button>
               <button type="button" data-question="When and where is the next meetup?">Next meetup?</button>
             </div>
+            <button id="chat-more" class="chat-more" type="button" aria-controls="chat-suggestions">More ideas ↻</button>
             <form id="chat-form">
               <label for="chat-input">Your question</label>
               <div class="chat-input-row">

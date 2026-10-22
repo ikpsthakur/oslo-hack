@@ -28,11 +28,57 @@ if (chatForm) {
   const log = document.querySelector('#chat-messages');
   const clear = document.querySelector('#chat-clear');
   const suggestions = [...document.querySelectorAll('[data-question]')];
+  const moreIdeas = document.querySelector('#chat-more');
+  // One prompt per group keeps each set varied. Rotation never calls the model.
+  const questionGroups = [
+    [
+      ['New here?', 'Can I join as a beginner?'],
+      ['Start in 30 minutes', 'Give me a fictional 30-minute guide for starting a small project.'],
+      ['Find my role', 'In a fictional team, what could I contribute without coding?'],
+      ['Stuck on an idea?', 'In your fictional support guide, how can a team choose between too many ideas?'],
+      ['Test a prototype', 'Show me a fictional guide to testing a prototype with three people.'],
+      ['Next meetup?', 'When and where is the next real meetup?'],
+    ],
+    [
+      ['A tiny project', 'Suggest one fictional project I could prototype in an afternoon.'],
+      ['No-code ideas', 'Give me a fictional no-code project idea and one beginner task.'],
+      ['Repair café board', 'Describe the fictional repair café triage board project.'],
+      ['Accessible design', 'Show me the fictional accessibility checklist project without claiming a venue is accessible.'],
+      ['A learning game', 'Tell me about the fictional learning game project.'],
+      ['Creative leftovers', 'Describe the fictional leftover ingredient idea cards project.'],
+    ],
+    [
+      ['Mix two ideas', 'Suggest one fictional combination of two catalogue projects and a tiny first step.'],
+      ['Language + maps', 'Explain the fictional language-and-neighbourhood combination.'],
+      ['Design + coding', 'Show a fictional collaboration between a designer and a beginner coder.'],
+      ['A surprising twist', 'Share one interesting fictional experiment from your insight cards.'],
+      ['Reuse a prototype', 'In a fictional example, how could one prototype support a second project?'],
+      ['Where answers come from', 'Where does this chatbot get its information? Does it read GitHub live?'],
+    ],
+  ];
   let messages = [];
   let busy = false;
 
+  function rotateSuggestions() {
+    if (busy) return;
+    suggestions.forEach((button, index) => {
+      const choices = questionGroups[index].filter(([, question]) => question !== button.dataset.question);
+      const [label, question] = choices[Math.floor(Math.random() * choices.length)];
+      button.textContent = label;
+      button.dataset.question = question;
+      button.setAttribute('title', question);
+    });
+  }
+  moreIdeas.addEventListener('click', () => {
+    if (busy) return;
+    rotateSuggestions();
+    status.textContent = 'New example questions ready.';
+  });
+  rotateSuggestions();
+
   function openChat() {
     if (!panel.open) panel.show();
+    rotateSuggestions();
     launcher.setAttribute('aria-expanded', 'true');
     launcher.setAttribute('aria-label', 'Close Oslo Hack chat');
     input.focus({ preventScroll: true });
@@ -68,6 +114,7 @@ if (chatForm) {
     busy = value;
     send.disabled = value;
     clear.disabled = value;
+    moreIdeas.disabled = value;
     suggestions.forEach(button => { button.disabled = value; });
     send.textContent = value ? 'Thinking…' : 'Ask ↗';
     chatForm.setAttribute('aria-busy', String(value));
@@ -114,6 +161,7 @@ if (chatForm) {
     log.replaceChildren();
     addMessage('assistant', 'Hi! What would you like to know about Oslo Hack?');
     status.textContent = 'Conversation cleared.';
+    rotateSuggestions();
     input.value = '';
     input.focus({ preventScroll: true });
   });

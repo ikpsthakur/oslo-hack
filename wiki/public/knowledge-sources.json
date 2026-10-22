@@ -5,6 +5,10 @@
     { "path": "wiki/public/synthetic/faqs.md", "kind": "synthetic" },
     { "path": "wiki/public/synthetic/sessions.md", "kind": "synthetic" },
     { "path": "wiki/public/synthetic/projects.md", "kind": "synthetic" },
-    { "path": "wiki/public/synthetic/participation.md", "kind": "synthetic" }
+    { "path": "wiki/public/synthetic/participation.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/guides.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/support.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/combinations.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/insights.md", "kind": "synthetic" }
   ]
 }

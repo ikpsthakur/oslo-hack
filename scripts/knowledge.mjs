@@ -25,6 +25,7 @@ export function validateSources(config) {
 export function compileKnowledge(documents) {
   validateSources({ version: 1, sources: documents });
   const ids = new Set();
+  const references = new Set();
   const sections = documents.map(({ path: source, kind, content }) => {
     const frontmatter = content.match(/^---\n([\s\S]*?)\n---\n/);
     if (!frontmatter) throw new Error(`Missing knowledge metadata: ${source}`);
@@ -33,14 +34,16 @@ export function compileKnowledge(documents) {
     const body = content.slice(frontmatter[0].length).trim();
     if (!body) throw new Error(`Empty knowledge source: ${source}`);
     if (synthetic && !/fictional/i.test(body)) throw new Error(`Synthetic source needs a visible fictional-data warning: ${source}`);
-    const records = [...body.matchAll(/^## ((?:FAQ|SESSION|PROJECT|POLICY)-\d{3})\b/gm)];
+    const records = [...body.matchAll(/^## ((?:FAQ|SESSION|PROJECT|POLICY|GUIDE|SUPPORT|COMBO|INSIGHT)-\d{3})\b/gm)];
     if (synthetic && !records.length) throw new Error(`Synthetic source has no records: ${source}`);
     for (const [, id] of records) {
       if (ids.has(id)) throw new Error(`Duplicate synthetic record: ${id}`);
       ids.add(id);
     }
+    for (const [id] of body.matchAll(/\b(?:FAQ|SESSION|PROJECT|POLICY|GUIDE|SUPPORT|COMBO|INSIGHT)-\d{3}\b/g)) references.add(id);
     return `SOURCE: ${source}\nTYPE: ${synthetic ? 'SYNTHETIC — FICTIONAL DEMO ONLY; NOT REAL EVENTS OR POLICIES' : 'BASELINE PUBLIC GUIDE — UNKNOWN FACTS REMAIN UNCONFIRMED'}\n${body}`;
   });
+  for (const id of references) if (!ids.has(id)) throw new Error(`Unknown knowledge record reference: ${id}`);
   const bundle = sections.join('\n\n---\n\n');
   if (bundle.length > MAX_CONTEXT) throw new Error(`Knowledge bundle exceeds ${MAX_CONTEXT} characters; curate or add targeted retrieval before expanding`);
   return bundle;

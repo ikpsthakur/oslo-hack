@@ -43,8 +43,12 @@ Start with [project scope](project.md), then choose a feature file. These files 
 - [Synthetic store index](public/synthetic/index.md): fictional data catalogue and editing instructions.
 - [Synthetic FAQs](public/synthetic/faqs.md): eight example visitor questions and answers.
 - [Synthetic sessions](public/synthetic/sessions.md): two sample workshop formats; no confirmed events.
-- [Synthetic projects](public/synthetic/projects.md): three example projects and beginner tasks.
+- [Synthetic projects](public/synthetic/projects.md): twelve example projects and beginner tasks.
 - [Synthetic participation](public/synthetic/participation.md): four hypothetical participation scenarios.
+- [Build guides](public/synthetic/guides.md): eight fictional practical project guides.
+- [Support playbook](public/synthetic/support.md): eight fictional troubleshooting and collaboration scenarios.
+- [Project combinations](public/synthetic/combinations.md): eight combinations with source records, first steps, and limits.
+- [Experiment cards](public/synthetic/insights.md): six creative possibilities, not research findings.
 - [Knowledge evaluations](public/synthetic/evaluation.md): manual answer-boundary cases; excluded from model context.
 - [LLM Wiki decision](decisions/001-project-wiki.md): why memory is stored in Markdown.
 - [Source and deployment decision](decisions/002-source-and-build.md): root is canonical.
