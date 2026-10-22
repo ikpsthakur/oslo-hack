@@ -9,7 +9,7 @@ updated: 2026-10-22
 
 ## Request and outcome
 
-The [user requested](../../raw/2026-10-22-synthetic-store-request.md) a synthetic data store in the wiki to support customer answers. The [store index](../public/synthetic/index.md) links 17 fictional records: eight FAQs, two sessions, three projects, and four participation scenarios. These are editable Markdown, not a database of real customers.
+The [user requested](../../raw/2026-10-22-synthetic-store-request.md) a synthetic data store in the wiki to support customer answers, then [requested broader guides, support, projects, creative bits, and combinations](../../raw/2026-10-22-knowledge-expansion.md) on 2026-10-22. The [store index](../public/synthetic/index.md) now links 56 fictional records: eight FAQs, two sessions, twelve projects, four participation scenarios, eight guides, eight support scenarios, eight combinations, and six experiment/insight cards. These are editable Markdown, not a database of real customers.
 
 ## Code and knowledge targets
 
@@ -21,10 +21,12 @@ The [user requested](../../raw/2026-10-22-synthetic-store-request.md) a syntheti
 
 ## Acceptance criteria
 
-Every synthetic source must carry `dataset: synthetic` metadata and a visible warning. Only allowlisted files may become chat context. Internal wiki pages, raw sources, and evaluation prompts stay excluded. Build must fail on missing files, mislabelled sources, duplicate record IDs, invalid source paths, or an oversized knowledge bundle.
+Every synthetic source must carry `dataset: synthetic` metadata and a visible warning. Only allowlisted files may become chat context. Internal wiki pages, raw sources, and evaluation prompts stay excluded. Build must fail on missing files, mislabelled sources, duplicate record IDs, dangling record references, invalid source paths, or a knowledge bundle above 32,000 characters. Categories: FAQ, SESSION, PROJECT, POLICY, GUIDE, SUPPORT, COMBO, INSIGHT, each followed by a unique three-digit ID.
 
 Model instructions require an explicit fictional-demo label when using synthetic records and an unconfirmed answer for actual event, booking, availability, cost, contact, or policy questions. Fictional capacities are not live seat counts. No real personal data or usable booking/contact details are invented. Markdown edits take effect after rebuild; production still needs a release.
 
 ## Validation and release
 
-Local implementation includes automated compilation and request-wiring tests. Final execution results are recorded in [the log](../log.md). Live model behavior remains unverified because the existing [chatbot](chatbot.md) is blocked by Vercel account verification. This change does not deploy to Vercel.
+The whole curated bundle is compiled into `dist/api/chat.mjs` during build, then deployed to Vercel. Each question sends the published bundle and bounded conversation to the model; there is no live GitHub fetch, model training, vector database, or per-query retrieval at this size. A Markdown edit needs rebuild/release; a new file also needs explicit allowlisting. See [architecture](../architecture.md).
+
+Local compilation/request-wiring tests validate the expanded library. The previous catalogue already produced real labelled answers through OpenRouter on 2026-10-22. Expanded-library browser and live verification results will be recorded in [the log](../log.md); do not infer model adherence from mocks alone.

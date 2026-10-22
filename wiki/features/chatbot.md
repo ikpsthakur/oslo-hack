@@ -47,6 +47,12 @@ The panel fits the dynamic viewport with safe-area spacing and a scrollable body
 
 ## Validation and release
 
+### Dynamic suggestions and expanded knowledge
+
+Requested on 2026-10-22: rotate example questions and add extensive synthetic guides/support/project/combination content. The three buttons sample from 18 curated prompts (getting started/support, projects, combinations/provenance). Rotate at page load, popup open, conversation clear, or the explicit More ideas control. Each slot excludes its immediately previous question. Do not run timers, overwrite a draft/history, or rotate during a pending answer. Rotation is local and does not spend a model request. Clicking a sample still sends its current full question to the real API.
+
+The source library now contains 56 fictional records; [the store index](../public/synthetic/index.md) is the editing entry point. The public guide explains the published-snapshot pipeline and correct OpenRouter privacy path. Model instructions bound combinations to fictional project suggestions, distinguish experiments from findings, and explain provenance without claiming live GitHub access. Expanded-release results are pending in [the log](../log.md).
+
 PR #4 was reviewed with green CI and merged as `c01bd6b3ba10858a685008c7af29b3b78865c605`. Built and checked that exact commit; all 17 API/knowledge tests passed. The owner configured a hidden Production OpenRouter secret; its value was never read. Historical Gateway OIDC/key failures are recorded in [the log](../log.md), not current availability.
 
 On 2026-10-22, staged Production deployment `dpl_ENbjeDMnQEAqZvDHiVXm6boGzdhg` returned HTTP 200 with real model answers for an unconfirmed-meetup question and a fictional project example. The latter explicitly said "In this fictional demo". Promoted that exact build to https://oslo-hack-mywork.vercel.app, then submitted a public browser question and observed the rendered real answer, restored controls, and no browser console warnings/errors. A 375-pixel phone check showed no horizontal overflow and readable chat controls/reply/privacy notice. The new deployment's one-hour error scan found no error logs at check time. External drains/monitoring were not inspected. These are point-in-time tests, not a guarantee of future free capacity. See [open questions](../open-questions.md).

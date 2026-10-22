@@ -105,7 +105,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .chat-messages { max-height: 220px; overflow-y: auto; overscroll-behavior: contain; font-size: .9rem; }
 .chat-message { padding: 14px; margin: 0 0 12px; max-width: 95%; background: #353535; white-space: pre-wrap; overflow-wrap: anywhere; }
 .chat-message.user { margin-left: auto; background: var(--accent); color: var(--ink); }
-.chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; }
+.chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 10px; }
+.chat-more { display: block; min-height: 36px; margin: 0 0 18px; padding: 4px 0; border: 0; background: transparent; color: var(--accent); font: inherit; font-size: .8rem; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .chat-suggestions button, .chat-clear { font: inherit; font-size: .8rem; cursor: pointer; border: 1px solid #aaa; padding: 8px 10px; background: transparent; color: var(--white); }
 .chat-card label { display: block; margin-bottom: 8px; font-size: .85rem; font-weight: bold; }
 .chat-input-row { display: flex; gap: 8px; }

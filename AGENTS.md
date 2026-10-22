@@ -18,6 +18,8 @@ Priority: current explicit user instructions, then recorded confirmed requiremen
 
 Synthetic data is fictional even when the user has approved its use for demonstrations. Keep `dataset: synthetic` metadata, visible fiction warnings, and unique stable IDs. Never promote synthetic sessions, capacities, costs, policies, people, or teams into actual facts. Real updates need evidence in the baseline visitor guide. New knowledge sources require explicit allowlisting; evaluator/internal pages are excluded. Run build, check, and knowledge/API tests after editing customer knowledge.
 
+Supported synthetic record IDs are FAQ, SESSION, PROJECT, POLICY, GUIDE, SUPPORT, COMBO, and INSIGHT plus a three-digit suffix. Every referenced record ID must exist in the compiled bundle. Keep the 32,000-character context ceiling; curate or propose targeted retrieval before expanding it. Combinations are fictional design exercises, not actual integrations; insight cards are hypotheses, not research findings. GitHub stores sources, while the deployed API uses a build-time snapshot, never live GitHub reads.
+
 ## Page conventions
 
 Every wiki page starts with YAML-style frontmatter containing `title`, `type`, `status`, and `updated` (YYYY-MM-DD). Types: `index`, `project`, `technical`, `workflow`, `roadmap`, `feature`, `decision`, `source`, `questions`, `log`. Statuses: `current`, `proposed`, `accepted`, `implemented`, `historical`. A proposal must not become accepted merely because it is documented.

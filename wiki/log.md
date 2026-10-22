@@ -123,3 +123,13 @@ On the public browser, `#ask` opened the popup. Submitted a real question, close
 
 The new deployment's one-hour error scan found no error logs at check time. External drains/continuous monitoring were not inspected. No credentials, model routing, synthetic knowledge, billing, or privacy settings changed. The local preview process was reused, not replaced; real model tests used Production, not the preview's previously imported handler. Hosted runner queue is the remaining DevOps gap; it does not prevent the verified live popup from working.
 
+## [2026-10-22] enhance | Dynamic prompts and richer synthetic library
+
+The user requested rotating sample questions, broader guides/support/projects/interesting combinations, and an explanation of Markdown provenance. Registered [the request summary](../raw/2026-10-22-knowledge-expansion.md). PR #6's hosted CI had now passed; reviewed and merged it, then created `feat/dynamic-chat-knowledge` from updated main. Retained the library-free frontend and existing free-only OpenRouter authentication/routing.
+
+Added 18 curated prompts sampled as three varied suggestions at load/open/clear or More ideas; each slot avoids its immediate previous question. No timer, model call, automatic submission, draft/history overwrite, or rotation while busy. Added four synthetic sources and nine project records, bringing the catalogue to 56. Guides/support are fictional self-help, combinations are design exercises, and insights are hypotheses rather than research findings. Extended ID validation and added dangling-reference checks without raising the 32,000-character context ceiling. The compiled bundle is 29,881 characters at the initial build.
+
+Corrected stale Gateway privacy and old verification-blocker notes. Documented the actual pipeline: allowlisted Markdown → build-time API snapshot → Vercel → per-question OpenRouter/Nemotron context. GitHub is source/version history, not a live query or training service. New knowledge still requires allowlisting, build, review, and release. Automated and live expanded-release verification are pending below.
+
+Local build/wiki checks passed for 38 pages and eight immutable sources. All 26 tests passed, including 56-record context assembly, new-category ID/reference validation, suggestion rotation without API calls/repeats, draft retention, busy-state freeze, and submitting the current refreshed prompt. The local browser verified More ideas changes all three prompts without modifying a typed draft; 375px phone layout had no horizontal overflow. Real expanded-context testing and release remain pending.
+

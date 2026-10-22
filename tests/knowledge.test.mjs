@@ -9,10 +9,11 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const guide = { path: 'wiki/public/visitor-guide.md', kind: 'public-guide', content: '---\ntitle: Guide\n---\nReal event details are unconfirmed.' };
 const sample = { path: 'wiki/public/synthetic/test.md', kind: 'synthetic', content: '---\ndataset: synthetic\n---\nFictional demo only.\n## FAQ-001 — Sample\nNot a real event.' };
 
-test('knowledge includes 17 labelled records, source attribution, and baseline precedence', async () => {
+test('knowledge includes 56 labelled records, source attribution, and baseline precedence', async () => {
   const bundle = await loadKnowledge(root);
-  assert.equal([...bundle.matchAll(/^## (?:FAQ|SESSION|PROJECT|POLICY)-\d{3}\b/gm)].length, 17);
-  assert.equal([...bundle.matchAll(/^TYPE: SYNTHETIC/gm)].length, 4);
+  assert.equal([...bundle.matchAll(/^## (?:FAQ|SESSION|PROJECT|POLICY|GUIDE|SUPPORT|COMBO|INSIGHT)-\d{3}\b/gm)].length, 56);
+  assert.equal([...bundle.matchAll(/^TYPE: SYNTHETIC/gm)].length, 8);
+  assert.ok(bundle.length <= 32000);
   assert.match(bundle, /BASELINE PUBLIC GUIDE/);
   assert.match(bundle, /SOURCE: wiki\/public\/synthetic\/sessions.md/);
   assert.match(bundle, /No next event date/);
@@ -49,6 +50,8 @@ test('real compiled knowledge and synthetic-answer rules reach the model request
     assert.match(system, /FAQ-008/);
     assert.match(system, /PROJECT-003/);
     assert.match(system, /POLICY-004/);
+    for (const id of ['GUIDE-008', 'SUPPORT-008', 'COMBO-008', 'INSIGHT-006', 'PROJECT-012']) assert.ok(system.includes(id));
+    assert.match(system, /never claim to fetch GitHub live/);
     seen = true;
     return Response.json({ choices: [{ message: { content: 'In this fictional demo, a beginner session is an example only.' } }] });
   } });
@@ -56,6 +59,14 @@ test('real compiled knowledge and synthetic-answer rules reach the model request
   assert.equal(response.status, 200);
   assert.equal(seen, true);
   assert.match((await response.json()).answer, /fictional demo/);
+});
+
+test('new record categories reject duplicate IDs and dangling combination references', () => {
+  const combo = { ...sample, path: 'wiki/public/synthetic/combinations.md', content: '---\ndataset: synthetic\n---\nFictional demo.\n## COMBO-001 — Mix\nTry GUIDE-999.' };
+  assert.throws(() => compileKnowledge([guide, combo]), /Unknown knowledge record reference: GUIDE-999/);
+  const known = { ...combo, content: combo.content.replace('GUIDE-999', 'FAQ-001') };
+  assert.ok(compileKnowledge([guide, sample, known]).includes('COMBO-001'));
+  assert.throws(() => compileKnowledge([guide, sample, known, { ...known, path: 'wiki/public/synthetic/duplicate.md' }]), /Duplicate synthetic record/);
 });
 
 test('deployable API contains allowlisted knowledge but not raw-store or internal wiki documents', async () => {
