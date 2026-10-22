@@ -1,7 +1,7 @@
 ---
 title: Oslo Hack visitor chatbot
 type: feature
-status: accepted
+status: implemented
 updated: 2026-10-22
 ---
 
@@ -41,6 +41,6 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 
 ## Validation and release
 
-The previous Vercel Gateway runtime is deployed at https://oslo-hack-mywork.vercel.app and remains blocked by upstream HTTP 403. Historical OIDC/key testing is recorded in [the log](../log.md).
+PR #4 was reviewed with green CI and merged as `c01bd6b3ba10858a685008c7af29b3b78865c605`. Built and checked that exact commit; all 17 API/knowledge tests passed. The owner configured a hidden Production OpenRouter secret; its value was never read. Historical Gateway OIDC/key failures are recorded in [the log](../log.md), not current availability.
 
-The OpenRouter migration is in source on `feat/openrouter-free-chat`. Production release and real generation remain pending the new Production secret and staged test. Do not claim a working live chatbot based on mock tests. The status remains accepted until the real-generation criterion passes. See [open questions](../open-questions.md).
+On 2026-10-22, staged Production deployment `dpl_ENbjeDMnQEAqZvDHiVXm6boGzdhg` returned HTTP 200 with real model answers for an unconfirmed-meetup question and a fictional project example. The latter explicitly said "In this fictional demo". Promoted that exact build to https://oslo-hack-mywork.vercel.app, then submitted a public browser question and observed the rendered real answer, restored controls, and no browser console warnings/errors. A 375-pixel phone check showed no horizontal overflow and readable chat controls/reply/privacy notice. The new deployment's one-hour error scan found no error logs at check time. External drains/monitoring were not inspected. These are point-in-time tests, not a guarantee of future free capacity. See [open questions](../open-questions.md).

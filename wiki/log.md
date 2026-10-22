@@ -97,3 +97,13 @@ Merged the reviewed, green release-documentation PR #3 and created `feat/openrou
 
 Local build and structural checks passed for 34 wiki pages and seven registered sources. All 17 API/knowledge tests passed, including request wiring, zero-price/fallback guards, credential isolation, knowledge boundaries, and sanitized errors. The credential-pattern scan passed. A local browser check showed the updated OpenRouter/NVIDIA notice, unchanged chat form, and unconfirmed meetup. No real generation was attempted without the new key; the last read-only Production environment check showed only the old Gateway secret.
 
+## [2026-10-22] release | OpenRouter live generation verified
+
+The owner confirmed adding `OPENROUTER_API_KEY` to Vercel Production. Read-only environment listing confirmed a Hidden Secret on the existing `dodo-f3ef/oslo-hack` project without reading its value. Reviewed green [PR #4](https://github.com/ikpsthakur/oslo-hack/pull/4), merged as `c01bd6b3ba10858a685008c7af29b3b78865c605`, rebuilt the exact main commit, and passed build/wiki checks, all 17 tests, and the credential-pattern scan.
+
+Deployed only `dist/` with Production variables and domain assignment skipped. Vercel reported READY for `dpl_ENbjeDMnQEAqZvDHiVXm6boGzdhg` at https://oslo-hack-pru7k82yb-dodo-f3ef.vercel.app, a five-second build, static files and the Node.js 24 `api/chat` function in iad1. Two authenticated real API requests returned HTTP 200: the next-real-meetup answer preserved unconfirmed date/venue/booking facts; the project answer explicitly labelled the sample fictional. Neither was a mocked response.
+
+Promoted that same staged Production build and verified https://oslo-hack-mywork.vercel.app points to it. The public browser loaded without login. Submitted "What is Oslo Hack? Please answer in one short sentence." and observed a real answer describing the concept, restored controls, and no console warnings/errors. At 375 CSS pixels the document scroll width remained 375; the reply, input/send/clear controls, and privacy notice were readable. Saved a disposable phone screenshot under `outputs/openrouter-live-phone.png` and reset the viewport override.
+
+The new deployment's one-hour error scan returned no error logs at check time; this is point-in-time evidence, not monitoring coverage. Drains/external monitoring were not inspected or changed. Three live model requests were used for this release verification. No card entry, credit purchase, paid fallback, secret retrieval, or privacy-setting change was performed. The old Vercel Gateway credential remains unused; no account key was revoked automatically.
+
