@@ -11,7 +11,7 @@ updated: 2026-10-22
 
 The user asked to publish the Oslo Hack codebase in a public GitHub repository and use it to learn DevOps. This includes the website, project wiki, synthetic knowledge, build tools, and tests. The separate local bike project remains outside this repository. Public source access does not mean exposing credential files or deploying the development wiki as website routes.
 
-Public repository: [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack), created and verified public on 2026-10-22. See [Actions](https://github.com/iaznexai/oslo-hack/actions) for hosted checks and [the log](log.md) for setup results. Branch protection has not been configured as part of the bootstrap; use the pull-request convention described here.
+Public repository: [ikpsthakur/oslo-hack](https://github.com/ikpsthakur/oslo-hack), created and verified public on 2026-10-22 after the user specified this account. See [Actions](https://github.com/ikpsthakur/oslo-hack/actions) for hosted checks and [the log](log.md) for setup history, including the earlier repository that remains untouched. Branch protection has not been configured as part of the bootstrap; use the pull-request convention described here.
 
 ## The small-change cycle
 
@@ -25,7 +25,7 @@ Public repository: [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack), 
 
 ## Example commands
 
-The original `origin` remote is preserved for the earlier hosting system. The new GitHub remote is named `github` so the two are not confused. On a fresh GitHub clone, the GitHub remote will normally be called `origin` instead; use that name in the examples there.
+The original `origin` remote is preserved for the earlier hosting system. The requested `ikpsthakur/oslo-hack` remote is named `github`. The prior account's remote is retained as `github-iaznexai` and is not this project's push destination. On a fresh GitHub clone, the GitHub remote will normally be called `origin` instead; use that name in the examples there.
 
 ```sh
 git switch main
@@ -40,7 +40,7 @@ git add index.html dist/index.html wiki/features/session-details.md
 npm run security:check
 git commit -m "Clarify unconfirmed session details"
 git push -u github feature/session-copy
-gh pr create --repo iaznexai/oslo-hack --base main --fill
+gh pr create --repo ikpsthakur/oslo-hack --base main --fill
 ```
 
 The stage list is an example; include all files actually affected by your change. Do not run the example as a script without making the corresponding changes.

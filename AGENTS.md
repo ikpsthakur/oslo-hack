@@ -38,7 +38,7 @@ Read the index, search and read the relevant pages, then consult code or origina
 
 ## Implement a requested feature
 
-The public GitHub remote is `github` (`iaznexai/oslo-hack`); the original `origin` is preserved for the prior hosting system. After bootstrap, prefer a feature branch and a pull request for changes. Run build, check, tests, and `npm run security:check`; commit relevant generated `dist/` files. CI validates changes but does not deploy to Vercel. See `wiki/github-devops.md`. Never interpret public documentation as permission to publish secrets.
+The public GitHub remote is `github` (`ikpsthakur/oslo-hack`); the original `origin` is preserved for the prior hosting system. The earlier account's repository is preserved as `github-iaznexai`; do not push there for this project. After bootstrap, prefer a feature branch and a pull request for changes. Run build, check, tests, and `npm run security:check`; commit relevant generated `dist/` files. CI validates changes but does not deploy to Vercel. See `wiki/github-devops.md`. Never interpret public documentation as permission to publish secrets.
 
 1. Read the confirmed requirements, open questions, and relevant feature specification. Resolve routine choices from context; ask only for choices that materially change the requested outcome. Do not invent operational details.
 2. Edit root website source. Keep the current dark/lime direction and phone support unless asked to change them. Preserve the no-library, no-login, no-payments, no-database baseline unless explicitly expanded.

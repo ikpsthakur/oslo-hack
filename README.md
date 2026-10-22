@@ -1,8 +1,8 @@
 # Oslo Hack
 
-[![CI](https://github.com/iaznexai/oslo-hack/actions/workflows/ci.yml/badge.svg)](https://github.com/iaznexai/oslo-hack/actions/workflows/ci.yml)
+[![CI](https://github.com/ikpsthakur/oslo-hack/actions/workflows/ci.yml/badge.svg)](https://github.com/ikpsthakur/oslo-hack/actions/workflows/ci.yml)
 
-Public repository: [iaznexai/oslo-hack](https://github.com/iaznexai/oslo-hack).
+Public repository: [ikpsthakur/oslo-hack](https://github.com/ikpsthakur/oslo-hack).
 
 A phone-friendly, one-page website for finding people in Oslo to build small projects with. This repository also holds a local, AI-maintained project wiki, so requirements and decisions can outlast a chat session.
 
@@ -11,7 +11,7 @@ A phone-friendly, one-page website for finding people in Oslo to build small pro
 Clone the repository and open its folder in Codex or your editor:
 
 ```sh
-git clone https://github.com/iaznexai/oslo-hack.git
+git clone https://github.com/ikpsthakur/oslo-hack.git
 cd oslo-hack
 ```
 
