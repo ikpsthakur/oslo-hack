@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#110F17">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161616'/%3E%3Cpath d='M15 32h34M32 15v34' stroke='%23C8F43D' stroke-width='9' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23FFFDF8'/%3E%3C/svg%3E">
     <title>Oslo Hack — Make something small together</title>
-    <link rel="stylesheet" href="style.css?v=dark-poster-1">
+    <link rel="stylesheet" href="style.css?v=wiki-chat-1">
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -102,6 +102,38 @@
             <li><time>14:30</time><span><strong>Share the work</strong> Five informal minutes from each team.</span></li>
           </ol>
           <p>No preparation needed. Bring a laptop or notebook if useful to you.</p>
+        </div>
+      </section>
+      <section class="chat-section" id="ask" aria-labelledby="chat-title">
+        <p class="section-number">04 / Ask Oslo Hack</p>
+        <div class="chat-layout">
+          <div class="chat-intro">
+            <h2 id="chat-title">A LITTLE<br>HELP TO START.</h2>
+            <p>Ask about the idea, how a session works, or something small you could build.</p>
+            <p class="chat-note">The next meetup is not confirmed yet. The dates and venue above are examples.</p>
+          </div>
+          <div class="chat-card">
+            <p class="chat-provider">Oslo Hack guide · AI answers</p>
+            <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
+              <p class="chat-message assistant">Hi! What would you like to know about Oslo Hack?</p>
+            </div>
+            <div class="chat-suggestions" aria-label="Example questions">
+              <button type="button" data-question="Can I join as a beginner?">New here?</button>
+              <button type="button" data-question="Suggest a small project to build in an afternoon.">Need an idea?</button>
+              <button type="button" data-question="When and where is the next meetup?">Next meetup?</button>
+            </div>
+            <form id="chat-form">
+              <label for="chat-input">Your question</label>
+              <div class="chat-input-row">
+                <input id="chat-input" name="question" type="text" maxlength="1200" placeholder="What should I bring?" autocomplete="off" required aria-describedby="chat-privacy">
+                <button id="chat-send" type="submit">Ask ↗</button>
+              </div>
+            </form>
+            <p id="chat-status" class="chat-status" role="status"></p>
+            <button id="chat-clear" class="chat-clear" type="button">Clear conversation</button>
+            <p id="chat-privacy" class="chat-privacy">AI can make mistakes. Messages go to Vercel AI Gateway and Nemotron's provider, which may retain them for model improvement. Please don't share personal or sensitive information.</p>
+            <noscript><p>Enable JavaScript to use the assistant.</p></noscript>
+          </div>
         </div>
       </section>
     </main>

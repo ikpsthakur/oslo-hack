@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+**/.vercel/
+**/.env*
+!**/.env.example
+outputs/*
+!outputs/README.md
+/oslo-bike-finder/
+*.pem
+*.key
+*.p12
+*.pfx

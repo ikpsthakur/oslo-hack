@@ -1,0 +1,15 @@
+{
+  "name": "oslo-hack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Oslo Hack static website and local LLM project wiki",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/project.mjs build",
+    "check": "node scripts/project.mjs check",
+    "wiki:check": "node scripts/project.mjs wiki-check",
+    "security:check": "node scripts/security-check.mjs",
+    "preview": "node scripts/dev-server.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "sources": [
+    { "path": "wiki/public/visitor-guide.md", "kind": "public-guide" },
+    { "path": "wiki/public/synthetic/faqs.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/sessions.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/projects.md", "kind": "synthetic" },
+    { "path": "wiki/public/synthetic/participation.md", "kind": "synthetic" }
+  ]
+}
