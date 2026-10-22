@@ -9,7 +9,9 @@ updated: 2026-10-22
 
 ## Scope and current behavior
 
-The existing page displays a sample date, time, venue, and availability label. These are placeholders, not confirmed operational facts. Priority enhancement: display an explicit unconfirmed state until the organiser supplies real details.
+The website source now displays "Next meetup not confirmed", "Details pending", and "Date, time, and venue are still to be confirmed." The old sample date and Grünerløkka venue wording have been removed. The expandable agenda remains usable, with an explicit example-only notice. The chatbot knowledge describes the same unconfirmed state.
+
+Requested by the user on 2026-10-22 as the first branch-and-pull-request exercise. This describes the change on `fix/unconfirmed-meetup`, not a production deployment.
 
 ## Code and dependencies
 
@@ -17,11 +19,11 @@ Root [HTML](../../index.html): `#session`, `.session-date`, `.session-place`, `.
 
 ## Acceptance criteria
 
-When enhanced, no stale placeholder is presented as a confirmed meetup. A real date includes a correct weekday, year, and Europe/Oslo time. Venue/address claims require confirmation. The chatbot must use the same confirmation state.
+No placeholder date, venue, or availability claim is presented as a confirmed meetup. The example agenda is explicitly labelled. If actual details are supplied later, a real date includes a correct weekday, year, and Europe/Oslo time, and venue/address claims require confirmation. The chatbot must use the same confirmation state.
 
 ## Evidence and validation
 
-Based on [project requirements](../project.md) and [baseline evidence](../sources/project-baseline.md). The documented baseline was inspected locally on 2026-10-22. Re-test affected behavior after changes; no fresh browser pass is implied by this page.
+Based on [project requirements](../project.md), [baseline evidence](../sources/project-baseline.md), and the user's explicit request to replace placeholder session details with an unconfirmed message. See [the log](../log.md) for actual validation and pull-request results. No merge or production release is implied by this feature's implemented status.
 
 ## Future changes
 

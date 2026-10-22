@@ -14,7 +14,7 @@ updated: 2026-10-22
 - Should people reserve places, express interest, or simply arrive? There is currently no signup mechanism.
 - Are there real projects to list or showcase, with permission to credit contributors?
 
-The [baseline observation](../raw/2026-10-22-code-observation.md) records an old placeholder session date/venue. It is not a confirmed announcement; do not use it as chatbot ground truth.
+The [baseline observation](../raw/2026-10-22-code-observation.md) records an old placeholder session date/venue. It is historical evidence, not a confirmed announcement. The [session-details change](features/session-details.md) removes that wording from current source and explicitly marks the meetup as unconfirmed; it still needs pull-request review and release before affecting production.
 
 ## Implementation and operation
 
