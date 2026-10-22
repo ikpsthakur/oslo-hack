@@ -10,7 +10,7 @@ Observed on 2026-10-22 in `/Users/kthakur/Documents/New project 2` before wiki c
 - The displayed session text is “Saturday, 12 October · 10:00–15:00” and “Community room near Grünerløkka / Exact address shared before the session”. These are placeholder details, not evidence of a confirmed event. In 2026, October 12 is a Monday, so the copy should not be treated as a current real schedule.
 - `dist/.vercel/project.json` identifies project `oslo-hack`, ID `prj_Ekv8dnWFY8ri8qqW3YGRifnZ0tHs`, team `team_LiffGbDewlCcvv9ITYLYxTEH`. These are identifiers, not credentials.
 - Existing `.openai/hosting.json` points to `dist/` for the earlier Sites hosting. Keep that configuration intact.
-- The previously published Vercel address is `https://oslo-hack-livid.vercel.app`. No live availability test was performed for this conversion.
+- A previously published Vercel address was recorded here. Its literal URL was redacted on 2026-10-22 at the user's explicit request to retire that address and remove associated details. No live availability test was performed for the original conversion. This is a documented redaction of this source, not a new observation of its original state.
 - Existing `oslo-bike-finder/` and untracked files were present and are outside the conversion scope.
 
 ## Website SHA-256 baseline
