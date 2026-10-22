@@ -113,3 +113,13 @@ The user requested a bottom-right chat icon that opens a popup instead of the in
 
 Local build/wiki checks and all 21 tests passed, including four new controller tests for toggling/history, Escape/focus, deep links, and closing during an in-flight reply. Local browser checks verified the default collapsed launcher, open/focus, Escape/return focus, and desktop lower-right placement. At 375×812 CSS pixels the panel stayed within the viewport (10px side insets, bottom 726px) with document width 375px and no horizontal overflow. Native on-screen keyboard behavior was not simulated.
 
+## [2026-10-22] release | Floating popup verified online
+
+Published [PR #6](https://github.com/ikpsthakur/oslo-hack/pull/6) from `feat/floating-chat`; it includes PR #5's prior release-documentation commit. GitHub CI remained queued, not passed. Kept both PRs unmerged rather than claiming hosted validation. Local review, build/wiki/security checks, and all 21 tests passed. Confirmed that both API source and compiled API were unchanged from the working OpenRouter release.
+
+Staged commit `4f11876386ca7566c339718862bdc171858e1e1c` as Production deployment `dpl_HaCuc52HdeaA9XzyzjHFPifahUP4` at https://oslo-hack-cbjce7dgz-dodo-f3ef.vercel.app. Vercel reported READY, a four-second build, static assets and Node.js `api/chat` in iad1. A real staged question returned HTTP 200. Promoted that exact tested build and verified https://oslo-hack-mywork.vercel.app resolves to it. This is a deliberate release of the locally tested feature-branch commit, not a merged-main deployment; hosted CI and PR merge remain pending.
+
+On the public browser, `#ask` opened the popup. Submitted a real question, closed it while busy, observed the real answer arrive without reopening or moving focus from the launcher, and reopened to find the conversation retained. No browser console warnings/errors. Live 375×812 viewport check showed the panel within 10px side insets and no horizontal document overflow. Local browser also verified the close button, Escape/focus return, and deep links. Restored the viewport and saved disposable desktop/phone screenshots under `outputs/`. Two live model requests were used for this popup release (staged API and public browser).
+
+The new deployment's one-hour error scan found no error logs at check time. External drains/continuous monitoring were not inspected. No credentials, model routing, synthetic knowledge, billing, or privacy settings changed. The local preview process was reused, not replaced; real model tests used Production, not the preview's previously imported handler. Hosted runner queue is the remaining DevOps gap; it does not prevent the verified live popup from working.
+

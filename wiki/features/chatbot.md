@@ -43,7 +43,7 @@ Limits: 16 KB request, nine alternating messages, 1,200-character new question, 
 
 Requested by the user on 2026-10-22: replace the inline chat section with a bottom-right chat-icon launcher and popup, preserving the working model integration. On `feat/floating-chat`, the launcher is available across the page. It toggles a labelled non-modal dialog, so visitors can still use the website. The close button and Escape return focus to the launcher; opening focuses the input. Messages survive close/reopen in memory, including an answer received while closed, without stealing focus. `#ask` deep links open the popup. No change to provider credentials, knowledge, or free-only routing.
 
-The panel fits the dynamic viewport with safe-area spacing and a scrollable body; the header/close control stays accessible. It does not claim to connect to a human organiser. Pending browser checks and release evidence are recorded in [the log](../log.md).
+The panel fits the dynamic viewport with safe-area spacing and a scrollable body; the header/close control stays accessible. It does not claim to connect to a human organiser. The popup was deployed and real browser replies verified on 2026-10-22; [PR #6](https://github.com/ikpsthakur/oslo-hack/pull/6) remains open while hosted CI is queued. All 21 tests passed locally. Exact release evidence is recorded in [the log](../log.md).
 
 ## Validation and release
 
