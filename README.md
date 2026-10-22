@@ -15,8 +15,6 @@ git clone https://github.com/ikpsthakur/oslo-hack.git
 cd oslo-hack
 ```
 
-The original Mac checkout remains at `/Users/kthakur/Documents/New project 2`.
-
 Read the [wiki index](wiki/index.md) for project context and the [roadmap](wiki/roadmap.md) for suggested next steps. [AGENTS.md](AGENTS.md) defines how an AI should maintain the project memory. The wiki can also be read in any text editor or by opening this folder as an Obsidian vault; no Obsidian plugins are required.
 
 This adapts [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) to maintaining a small website. The AI reads source material, updates linked knowledge pages, and records useful decisions and work. The files themselves are the persistent memory; updates happen when you ask an AI agent to work in this folder. The development wiki needs no background model or API key.
