@@ -82,7 +82,7 @@ Put original notes or source documents in `raw/`. Once registered in [the source
 
 ## Publishing
 
-The existing production address is <https://oslo-hack-livid.vercel.app>. Its availability was not rechecked as part of this local conversion.
+The production address is <https://oslo-hack-mywork.vercel.app>. PR #1 was reviewed and merged, and its unconfirmed-meetup copy was deployed on 2026-10-22. The previous primary address is being retired at the user's request; release outcomes are recorded in the wiki log.
 
 Build and check from the root before publishing. Deploy only `dist/` to the already linked `oslo-hack` Vercel project. Confirm the linked owner/project before deployment. The wiki and selected raw evidence are public repository documentation; they are not served as website routes or automatically included in AI context. Credentials and local reports stay excluded from GitHub. The GitHub CI workflow does not deploy or change the live website.
 

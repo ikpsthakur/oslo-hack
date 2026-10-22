@@ -17,3 +17,5 @@ Integration uses direct HTTP through the [Chat Completions REST API](https://ver
 
 Related: [chatbot specification](../features/chatbot.md), [development](../development.md).
 
+Production verification exposed a runtime distinction: the [OIDC federation documentation](https://vercel.com/docs/oidc) says functions receive `x-vercel-oidc-token` on each Request, while `VERCEL_OIDC_TOKEN` is provided for builds/local development. Updated the handler and regression tests accordingly. The actual production API previously returned a missing-credential response; the separate authenticated local gateway call returned 403 account verification required. Neither is a successful model-generation result.
+

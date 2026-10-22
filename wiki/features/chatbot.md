@@ -24,7 +24,7 @@ Target this specification for behavior changes, the public guide for verified ne
 
 ## Integration
 
-Exact model: `nvidia/nemotron-3.5-lightning-free`, discovered 2026-10-22 with zero input/output token prices. No paid fallback, credit purchase, client credentials, libraries, database, or accounts. Direct REST uses server-held Vercel OIDC, or an existing local gateway key. [Gateway evidence](../sources/ai-gateway.md).
+Exact model: `nvidia/nemotron-3.5-lightning-free`, discovered 2026-10-22 with zero input/output token prices. No paid fallback, credit purchase, client credentials, libraries, database, or accounts. Direct REST uses a configured server-side `AI_GATEWAY_API_KEY` first, then the per-request Vercel OIDC header on Vercel, then the local/build environment token. Production OIDC tokens are read on each request rather than cached at module load. [Gateway evidence](../sources/ai-gateway.md).
 
 Limits: 16 KB request, nine alternating messages, 1,200-character new question, 500 output tokens, 25-second upstream timeout, three simultaneous requests per function instance. This guard is not a distributed rate limiter. Same-origin checks block ordinary cross-site browser calls, not arbitrary direct clients.
 

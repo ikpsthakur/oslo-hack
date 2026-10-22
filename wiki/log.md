@@ -65,3 +65,17 @@ Created and verified [ikpsthakur/oslo-hack](https://github.com/ikpsthakur/oslo-h
 
 Saved the tested meetup update as a local feature commit and rebased it onto the corrected baseline. The proposed change remains isolated on `fix/unconfirmed-meetup`; it has not been merged or deployed. The pull request will compare that branch against `main`, with GitHub CI checking the proposed merged result. This is the first review exercise described in [the DevOps guide](github-devops.md).
 
+## [2026-10-22] release | Review and merge PR 1
+
+At the user's request, reviewed the complete [PR 1](https://github.com/ikpsthakur/oslo-hack/pull/1) diff and passing Validate check. Found no blocking issue in the copy/knowledge update. Merged the exact reviewed head using a merge commit, resulting in `711070416ec5089cc6c8ab7b3c84dbaae408c602`. Synced local main and reran build, checks, all 14 existing tests, and the credential scan. Main's hosted CI also passed.
+
+Confirmed the intended Vercel team/project and deployed only the seven allowlisted runtime files. Deployment `dpl_BzzXaV6yup6SBPxQSnEzqTATiRhS` became READY and was promoted. The originally requested short hostname was already in use; the user selected the replacement https://oslo-hack-mywork.vercel.app, which was accepted and returned public HTTP 200. The legacy address is being removed only after replacement verification.
+
+## [2026-10-22] fix | Production chatbot credentials and domain retirement
+
+Live testing found two distinct blockers: the direct gateway call returned 403 `customer_verification_required`, and the deployed function returned a missing-credential error. Official Vercel OIDC documentation confirms production tokens arrive in a request header rather than the build/local environment variable. Added request-header support in the Vercel runtime, retained explicit gateway-key precedence and the local fallback, and added three regression tests on `fix/production-chat-and-domain`.
+
+The user pasted a gateway credential. It was not repeated, written to files, executed as a command argument, or committed. Advised rotation and direct entry of a replacement as a Production environment secret in Vercel. Expanded the credential-pattern scanner to detect gateway keys. No billing details were entered or credit purchases made.
+
+Updated active release documentation to use the selected address. As an explicit exception to source immutability, redacted the retired address from the dated raw observation at the user's request and updated only that source's manifest hash. Earlier Git history remains intact; project source, current hosting linkage, and rollback deployments are preserved because the old alias is not a separate codebase.
+

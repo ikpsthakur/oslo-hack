@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const git = args => execFileSync('git', args, { cwd: root });
 const rules = [
+  ['Vercel AI Gateway key', /\bvck_[A-Za-z0-9_-]{24,}\b/],
   ['GitHub token', /\bgh[pousr]_[A-Za-z0-9_]{30,}\b/],
   ['GitHub fine-grained token', /\bgithub_pat_[A-Za-z0-9_]{30,}\b/],
   ['AI provider key', /\bsk-[A-Za-z0-9_-]{24,}\b/],

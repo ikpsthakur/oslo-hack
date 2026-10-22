@@ -30,9 +30,11 @@ After UI changes test phone/desktop layouts, keyboard focus, navigation, schedul
 
 ## Release
 
-Production project: `oslo-hack`; team: `dodo-f3ef`; stable URL: https://oslo-hack-livid.vercel.app.
+Production project: `oslo-hack`; team: `dodo-f3ef`; stable URL: https://oslo-hack-mywork.vercel.app.
 
 Use the existing `dist/.vercel/project.json` link; confirm owner/project before deployment. Build and check first. Deploy only `dist/` so original sources, internal notes, and credentials are not published. Vercel OIDC is preferred for the deployed function; local tokens expire and need refreshing. Preserve existing hosting configuration.
 
 The chatbot uses only `nvidia/nemotron-3.5-lightning-free`, discovered on 2026-10-22. No automatic paid fallback or credit purchase. Model availability and account prerequisites may change; check [gateway references](sources/ai-gateway.md). Gateway setup or billing verification may require action by the account owner.
+
+In Vercel Functions, OIDC is read from the platform-provided `x-vercel-oidc-token` request header. The `VERCEL_OIDC_TOKEN` environment variable is the local/build fallback, not a production runtime guarantee. A configured server-side `AI_GATEWAY_API_KEY` takes priority. Enter replacement keys directly in Vercel's environment settings for Production and redeploy; never post keys in chat, commits, PRs, or command-line arguments. A 403 `customer_verification_required` still requires account-owner action.
 

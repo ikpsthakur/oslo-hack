@@ -51,7 +51,9 @@ export function createChatHandler({ fetcher = fetch, env = process.env, knowledg
       return reply(400, { error: 'Send a question of up to 1,200 characters and a short conversation.' });
     }
     if (messages.at(-1).content.length > 1200) return reply(400, { error: 'Please keep your question under 1,200 characters.' });
-    const token = env.AI_GATEWAY_API_KEY || env.VERCEL_OIDC_TOKEN;
+    // Vercel supplies production OIDC per request; the env token is for local development/builds.
+    const runtimeToken = env.VERCEL === '1' ? request.headers.get('x-vercel-oidc-token') : undefined;
+    const token = env.AI_GATEWAY_API_KEY || runtimeToken || env.VERCEL_OIDC_TOKEN;
     if (!token || !knowledge) return reply(503, { error: 'The assistant is not connected yet. Please try again later.' });
     if (active >= 3) return reply(429, { error: 'The assistant is busy. Please try again shortly.' }, { 'Retry-After': '15' });
 
